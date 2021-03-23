@@ -17,7 +17,7 @@ class DataGenImpl extends DataGen  {
   def userGen(totalUser: Integer, startDate:LocalDateTime, endDate: LocalDateTime): List[User] = {
     var users = List[User] ()
     for (i <- 1 to totalUser){
-      var usr = User((1000+1).toString(),"User"+String.valueOf(i), new Random().nextInt(50), "user"+String.valueOf(i)+"@fractal.ai", List("English", "Hindi"), "India", LocalDateTime.now())
+      var usr = User((1000+1).toString(),"User"+String.valueOf(i), new Random().nextInt(50), "user"+String.valueOf(i)+"@fractal.ai", List("English", "Hindi"), "India", LocalDateTime.now().toString())
       usr :: users
     }
     users

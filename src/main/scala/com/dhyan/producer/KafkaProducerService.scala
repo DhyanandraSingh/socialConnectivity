@@ -18,7 +18,7 @@ object KafkaProducerService extends Serializable {
   val kafkaParams = Map[String, Object](
     ProducerConfig.BOOTSTRAP_SERVERS_CONFIG -> "localhost:9092",
     ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringSerializer",
-    ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG -> classOf[StringSerializer],
+    ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringSerializer",
     ProducerConfig.CLIENT_ID_CONFIG -> "latest"
   //ProducerConfig.ACKS_CONFIG -> "all"
   )

@@ -16,37 +16,39 @@ object neo4jStructureStremingConsumer {
   
 
   def consumeSocialConnectionRecords1() {
-    val df = sparkSession.read
+    val df = sparkSession.readStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "localhost:9092  ")
+      .option("kafka.bootstrap.servers", "localhost:9092")
       .option("subscribe", "socialConn1")
       //.option("subscribePattern", "topic.*")
       .option("startingOffsets", "earliest")
       .option("endingOffsets", "latest")
       .load()
 
-    df.show()
+      df.show()
 
     //df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").as[(String, String)]
     
-    df.selectExpr("CAST(value AS STRING) AS jsonData")
+   /* df.selectExpr("CAST(value AS STRING) AS jsonData")
       .select(from_json($"jsonData", Encoders.product[User].schema).as("data"))
       .select("data.*")
+      .writeStream
+      .foreachBatch(function)*/
       
   }
   
   
   def consumeSocialConnectionRecords2() {
-    val df = sparkSession.read
+    val df = sparkSession.readStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "localhost:9092  ")
+      .option("kafka.bootstrap.servers", "localhost:9092")
       .option("subscribe", "socialConn1")
       //.option("subscribePattern", "topic.*")
       .option("startingOffsets", "earliest")
-      .option("endingOffsets", "latest")
+      //.option("endingOffsets", "latest")
       .load()
 
-    df.show()
+    //df.show()
 
     //df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").as[(String, String)]
     
