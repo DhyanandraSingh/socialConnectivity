@@ -1,14 +1,17 @@
 package com.dhyan.consumer
 
-import com.dhyan.common.SparkUtility
-import com.dhyan.model.User
+import java.io.Serializable
 
 import org.apache.spark.sql.Encoders
-import org.apache.spark.sql.functions.{from_json, split, when}
+import org.apache.spark.sql.functions.from_json
+
+import com.dhyan.common.SparkUtility
 import com.dhyan.consumer.writer.neo4jForeachWriter
+import com.dhyan.model.User
 
-object neo4jStructureStremingConsumer {
 
+object neo4jStructureStremingConsumer extends Serializable  {
+ 
   val sparkSession = SparkUtility.session()
   import sparkSession.implicits._
   
@@ -52,12 +55,14 @@ object neo4jStructureStremingConsumer {
 
     //df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").as[(String, String)]
     
-    df.selectExpr("CAST(value AS STRING) AS jsonData")
+    val stream = df.selectExpr("CAST(value AS STRING) AS jsonData")
       .select(from_json($"jsonData", Encoders.product[User].schema).as("data"))
       .select("data.*")
       .writeStream
       .foreach(neo4jWriter)
       .start()
+      
+    stream.awaitTermination
       
   }
   

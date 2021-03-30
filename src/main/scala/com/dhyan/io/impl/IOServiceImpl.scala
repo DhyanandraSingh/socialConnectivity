@@ -8,8 +8,9 @@ import org.apache.spark.sql.types.StructType
 
 import org.apache.spark.sql.{ SaveMode, SparkSession, DataFrame, Dataset, Row }
 
+import java.io.Serializable
 
-object IOServiceImpl extends IOService {
+object IOServiceImpl extends Serializable with IOService {
   
   val sparkSession :SparkSession = SparkUtility.session()
   

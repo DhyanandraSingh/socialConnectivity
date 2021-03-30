@@ -3,9 +3,23 @@ package com.dhyan.utility.db.neo4j
 import org.apache.spark.sql.{ SaveMode, SparkSession }
 import org.apache.spark.sql.{ DataFrame, Dataset, Row }
 import org.apache.spark.sql.types.{ StringType, StructField, StructType }
+
 import java.io.Serializable
 
+import org.neo4j.driver.{ Driver, GraphDatabase, AuthTokens, Result, Session }
+
 object neo4jUtils extends Serializable {
+
+  def initNeo4jDriver(): Session = {
+
+    //var neo4jdriver = GraphDatabase.driver(uri, AuthTokens.basic(user, password))
+
+    val neo4jdriver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "neo4j"))
+    val session = neo4jdriver.session
+
+    session
+
+  }
 
   def writeData(df: DataFrame, saveMode: SaveMode, driver: String, url: String, username: String, password: String, labels: String) = {
 

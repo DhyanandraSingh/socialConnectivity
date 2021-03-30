@@ -4,7 +4,10 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.{ Duration, StreamingContext }
 
-object SparkUtility {
+import java.io.Serializable
+
+
+object SparkUtility extends Serializable {
 
   @transient private var instance: SparkSession = _
 

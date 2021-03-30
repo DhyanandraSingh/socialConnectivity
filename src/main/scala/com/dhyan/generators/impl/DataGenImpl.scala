@@ -6,13 +6,14 @@ import java.time.LocalDateTime
 import java.util.concurrent.ThreadLocalRandom
 import java.util.Random
 
+import java.io.Serializable
 
 import com.dhyan.generators.DataGen
 
 import com.dhyan.model.Relationship
 import com.dhyan.model.User
 
-class DataGenImpl extends DataGen  {
+class DataGenImpl extends Serializable with DataGen {
   
   def userGen(totalUser: Integer, startDate:LocalDateTime, endDate: LocalDateTime): List[User] = {
     var users = List[User] ()

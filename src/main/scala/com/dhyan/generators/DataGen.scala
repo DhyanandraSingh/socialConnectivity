@@ -4,7 +4,9 @@ import java.time.LocalDateTime
 import com.dhyan.model.Relationship
 import com.dhyan.model.User
 
-trait DataGen {
+import java.io.Serializable
+
+trait DataGen extends Serializable {
   
   def userGen(totalUser: Integer, startDate:LocalDateTime, endDate: LocalDateTime) : List[User]
   

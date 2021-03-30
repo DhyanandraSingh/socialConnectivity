@@ -55,17 +55,17 @@ object ExecutorService extends Serializable {
 
   def main(args: Array[String]) {
     
-    print("-------------------------"+args(0)+"--------------------------")
+    print("-------------------------" +args(0)+ "--------------------------")
 
-    if (args != null && args.length != 0 && args(0).equalsIgnoreCase("producer")) {
+    if (args != null && args.length !=0 && args(0).equalsIgnoreCase("producer")) {
       producerExe()
-    } else if (args != null && args.length != 0 && args(0).equalsIgnoreCase("foreachConsumer")) {
+    } else if (args != null && args.length !=0 && args(0).equalsIgnoreCase("foreachConsumer")) {
       forEachConsumerExe()
-    } else if (args != null && args.length != 0 && args(0).equalsIgnoreCase("foreachBatchConsumer")) {
-      forEachBatchConsumerExe();
-    } else
+    } else if (args != null && args.length !=0 && args(0).equalsIgnoreCase("foreachBatchConsumer")) {
+      forEachBatchConsumerExe()
+    } else {
       exe1()
-
+    }
   }
 
 } 

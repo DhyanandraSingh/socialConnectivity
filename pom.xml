@@ -62,7 +62,8 @@
 			<groupId>org.neo4j.driver</groupId>
 			<artifactId>neo4j-java-driver</artifactId>
 			<!-- <version>4.2.0</version> -->
-			<version>1.0.4</version>
+			<!-- <version>1.0.4</version> -->
+			<version>4.0.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.anormcypher/anormcypher -->

@@ -3,7 +3,10 @@ package com.dhyan.common
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-object BasicOps {
+import java.io.Serializable
+
+object BasicOps extends Serializable
+ {
   
   
   def stringToDatetimeCoverter(dateStr: String, format: String = "yyyy-MM-dd HH:mm:ss"): LocalDateTime = {
@@ -15,4 +18,4 @@ object BasicOps {
   }
 
   
-}
+ }
