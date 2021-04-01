@@ -1,4 +1,6 @@
 *.class
 *.log
 target/
+log/
 */target/**
+*/log/**

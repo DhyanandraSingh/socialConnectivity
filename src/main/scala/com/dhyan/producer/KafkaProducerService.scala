@@ -43,7 +43,7 @@ object KafkaProducerService extends Serializable {
   def produceRecords() = {
     println("producer initiated..")
     var counter: Int = 50;
-    var topic = "socialConn1"
+    var topic = "socialConn21"
 
     var kafkaProducer = getProducer(kafkaParams)
 
@@ -54,7 +54,7 @@ object KafkaProducerService extends Serializable {
 
         println("---- starting producer ------")
         records.foreach(event => {
-
+          println("event: "+ event.toString())
           produce(kafkaProducer, topic, event.toString())
           TimeUnit.SECONDS.sleep(20)
         })

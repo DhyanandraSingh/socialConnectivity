@@ -1,21 +1,15 @@
 package com.dhyan.consumer.writer
 
-import org.apache.spark.sql.{ ForeachWriter }
-
 
 import java.io.Serializable
 
-import org.neo4j.driver.{ Driver, GraphDatabase, AuthTokens, Result, Session }
-
-import scala.collection.JavaConversions._
-import java.util.ArrayList
-import java.util.List
+import org.apache.spark.sql.ForeachWriter
+import org.neo4j.driver.Result
 
 import com.dhyan.model.User
-import com.dhyan.common.BasicOps
 import com.dhyan.utility.db.neo4j.neo4jUtils
 
-class neo4jForeachWriter(uri: String, user: String, password: String) extends ForeachWriter[String] with Serializable {
+class Neo4jWriterV2 extends ForeachWriter[String] with Serializable {
 
   def insertRecord(user: User): Int = {
     //val session = neo4jdriver.session
@@ -36,12 +30,11 @@ class neo4jForeachWriter(uri: String, user: String, password: String) extends Fo
   def process(record: String) = {
     // Write string to connection
     
-    if (record != null) {
+    if (record != null ) {
       
       println("record is not null")
       println("record :" + record.toString())
-      var recordArr = record.split("|")
-      
+      var recordArr = record.split("\\|")
       val user = User(
         java.util.UUID.randomUUID.toString,
         recordArr(0),
